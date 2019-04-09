@@ -66,11 +66,11 @@ StaticmanAPI.prototype.initialiseRoutes = function () {
   this.server.post(
     '/v:version/entry/:username/:repository/:branch',
     this.bruteforce.prevent,
-    this.requireApiVersion([1, 2]),
+    this.requireApiVersion([2]),
     this.requireParams(['fields']),
     this.controllers.process
   )
-/*
+
   this.server.post(
     '/v:version/entry/:username/:repository/:branch/:property',
     this.bruteforce.prevent,
@@ -78,7 +78,7 @@ StaticmanAPI.prototype.initialiseRoutes = function () {
     this.requireParams(['fields']),
     this.controllers.process
   )
-
+/*
   this.server.post(
     '/v:version/entry/:service/:username/:repository/:branch/:property',
     this.bruteforce.prevent,
