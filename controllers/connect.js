@@ -4,7 +4,20 @@ const path = require('path')
 const config = require(path.join(__dirname, '/../config'))
 const GitHub = require(path.join(__dirname, '/../lib/GitHub'))
 
+
+function _validUsernameAndRepository(username, repository) {
+  const allowedUsernames = config.get('allowedUsernames');
+  const allowedRepository = config.get('allowedRepositories');
+
+  return (allowedUsernames.length === 0 || allowedUsernames.indexOf(username) > -1) &&
+    (allowedRepository.length === 0 || allowedRepository.indexOf(repository) > -1)
+}
+
 module.exports = (req, res) => {
+  if (!_validUsernameAndRepository(req.params.username, req.params.repository)){
+    return res.status(403).end();
+  }
+
   const ua = config.get('analytics.uaTrackingId')
     ? require('universal-analytics')(config.get('analytics.uaTrackingId'))
     : null
