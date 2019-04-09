@@ -26,6 +26,7 @@ module.exports = (req, res) => {
     username: req.params.username,
     repository: req.params.repository,
     branch: req.params.branch,
+    version: req.params.version,
     token: config.get('githubToken')
   })
 
