@@ -4,6 +4,18 @@ const convict = require('convict')
 const path = require('path')
 
 const schema = {
+  allowedUsernames: {
+    doc: 'Whitelist for allowed usernames',
+    format: Array,
+    default: [],
+    env: 'ALLOWED_USERNAMES'
+  },
+  allowedRepositories: {
+    doc: 'Whitelist for allowed repositories',
+    format: Array,
+    default: [],
+    env: 'ALLOWED_REPOSITORIES'
+  },
   akismet: {
     site: {
       doc: 'URL of an Akismet account used for spam checking.',
