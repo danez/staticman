@@ -13,6 +13,7 @@ const StaticmanAPI = function () {
     encrypt: require('./controllers/encrypt'),
     auth: require('./controllers/auth'),
     handlePR: require('./controllers/handlePR'),
+    health: require('./controllers/health'),
     home: require('./controllers/home'),
     process: require('./controllers/process')
   }
@@ -110,6 +111,11 @@ StaticmanAPI.prototype.initialiseRoutes = function () {
     this.controllers.home
   )
 */
+
+  this.server.get(
+    '/health',
+    this.controllers.health
+  )
 }
 
 StaticmanAPI.prototype.initialiseWebhookHandler = function () {
