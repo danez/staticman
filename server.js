@@ -38,8 +38,14 @@ StaticmanAPI.prototype.initialiseBruteforceProtection = function () {
 
 StaticmanAPI.prototype.initialiseCORS = function () {
   this.server.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    const allowedOrigins = config.get('allowedOrigins')
+    const origin = allowedOrigins.length ? req.header('Origin') : '*'
+
+    if (!allowedOrigins.length || allowedOrigins.indexOf(req.header('Origin'))) {
+      res.header('Access-Control-Allow-Origin', origin)
+      res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With')
+    }
 
     next()
   })
@@ -62,7 +68,7 @@ StaticmanAPI.prototype.initialiseRoutes = function () {
     this.requireParams(['fields']),
     this.controllers.process
   )
-
+/*
   this.server.post(
     '/v:version/entry/:username/:repository/:branch/:property',
     this.bruteforce.prevent,
@@ -102,6 +108,7 @@ StaticmanAPI.prototype.initialiseRoutes = function () {
     '/',
     this.controllers.home
   )
+*/
 }
 
 StaticmanAPI.prototype.initialiseWebhookHandler = function () {

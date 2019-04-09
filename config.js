@@ -5,16 +5,22 @@ const path = require('path')
 
 const schema = {
   allowedUsernames: {
-    doc: 'Whitelist for allowed usernames',
+    doc: 'Whitelist for allowed usernames.',
     format: Array,
     default: [],
     env: 'ALLOWED_USERNAMES'
   },
   allowedRepositories: {
-    doc: 'Whitelist for allowed repositories',
+    doc: 'Whitelist for allowed repositories.',
     format: Array,
     default: [],
     env: 'ALLOWED_REPOSITORIES'
+  },
+  allowedOrigins: {
+    doc: 'Whitelist for allowed origins.',
+    format: Array,
+    default: [],
+    env: 'ALLOWED_ORIGINS'
   },
   akismet: {
     site: {
