@@ -42,7 +42,7 @@ StaticmanAPI.prototype.initialiseCORS = function () {
     const allowedOrigins = config.get('allowedOrigins')
     const origin = allowedOrigins.length ? req.header('Origin') : '*'
 
-    if (!allowedOrigins.length || allowedOrigins.indexOf(req.header('Origin'))) {
+    if (!allowedOrigins.length || allowedOrigins.indexOf(req.header('Origin')) > -1) {
       res.header('Access-Control-Allow-Origin', origin)
       res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
       res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With')
