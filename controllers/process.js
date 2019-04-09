@@ -120,16 +120,15 @@ function sendResponse (res, data) {
   res.status(statusCode).send(payload)
 }
 
-function _validUsernameAndRepository(username, repository) {
-  const allowedUsernames = config.get('allowedUsernames');
+function _validRepository(username, repository) {
   const allowedRepository = config.get('allowedRepositories');
+  const fullRepository = `${username}/${repository}`;
 
-  return (allowedUsernames.length === 0 || allowedUsernames.indexOf(username) > -1) &&
-    (allowedRepository.length === 0 || allowedRepository.indexOf(repository) > -1)
+  return (allowedRepository.length === 0 || allowedRepository.indexOf(fullRepository) > -1)
 }
 
 module.exports = (req, res, next) => {
-  if (!_validUsernameAndRepository(req.params.username, req.params.repository)){
+  if (!_validRepository(req.params.username, req.params.repository)){
     return res.status(403).end();
   }
 
