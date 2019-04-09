@@ -52,6 +52,7 @@ StaticmanAPI.prototype.initialiseCORS = function () {
 }
 
 StaticmanAPI.prototype.initialiseRoutes = function () {
+/*
   // Route: connect
   this.server.get(
     '/v:version/connect/:username/:repository',
@@ -59,7 +60,7 @@ StaticmanAPI.prototype.initialiseRoutes = function () {
     this.requireApiVersion([1, 2]),
     this.controllers.connect
   )
-
+*/
   // Route: process
   this.server.post(
     '/v:version/entry/:username/:repository/:branch',
