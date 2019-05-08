@@ -127,9 +127,19 @@ function _validRepository(username, repository) {
   return (allowedRepository.length === 0 || allowedRepository.indexOf(fullRepository) > -1)
 }
 
+function _validateHoneyPot(req) {
+  const fields = req.query.fields || req.body.fields;
+
+  return fields['comment'] == null || fields['comment'] === "";
+}
+
 module.exports = (req, res, next) => {
   if (!_validRepository(req.params.username, req.params.repository)){
     return res.status(403).end();
+  }
+
+  if (!_validateHoneyPot(req)) {
+    return res.status(200).end();
   }
 
   const staticman = new Staticman(req.params)
