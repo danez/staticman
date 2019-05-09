@@ -24,7 +24,7 @@
   "homepage": "https://github.com/eduardoboucas/staticman#readme",
   "dependencies": {
     "@octokit/rest": "^16.3.2",
-    "akismet": "^1.0.0",
+    "akismet": "^2.0.4",
     "body-parser": "^1.17.x",
     "convict": "^4.3.0",
     "express": "^4.16.4",

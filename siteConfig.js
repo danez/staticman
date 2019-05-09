@@ -45,6 +45,16 @@ const schema = {
       doc: 'Type of entry to be sent to Akismet',
       format: String,
       default: 'comment'
+    },
+    lang: {
+      doc: 'Language of website',
+      format: String,
+      default: 'en'
+    },
+    charset: {
+      doc: 'Charset of website',
+      format: String,
+      default: 'UTF-8'
     }
   },
   auth: {
